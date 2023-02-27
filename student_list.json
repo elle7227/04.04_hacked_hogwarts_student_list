@@ -2,102 +2,124 @@
   {
     "fullname": "Pansy parkinson",
     "gender": "girl",
-    "house": "slytherin"
+    "house": "slytherin",
+    "blood": "pure",
+    "status": false
   },
   {
     "fullname": "hannah Abbott",
     "gender": "girl",
-    "house": " Hufflepuff "
+    "house": " Hufflepuff ",
+    "blood": "half",
+    "status": true
   },
   {
     "fullname": "Susan bones",
     "gender": "girl",
-    "house": "hufflepuff"
+    "house": "hufflepuff",
+    "blood": "half"
   },
   {
     "fullname": "Justin Finch-Fletchley",
     "gender": "boy",
-    "house": "Hufflepuff"
+    "house": "Hufflepuff",
+    "blood": "pure"
   },
   {
     "fullname": "Terry BOOT",
     "gender": "boy",
-    "house": "RAVENCLAW"
+    "house": "RAVENCLAW",
+    "blood": "pure"
   },
   {
-    "fullname": " zacharias smith",
+    "fullname": "zacharias smith",
     "gender": "boy",
-    "house": " Hufflepuff "
+    "house": " Hufflepuff ",
+    "blood": "pure"
   },
   {
     "fullname": "Ernest \"Ernie\" Macmillan",
     "gender": "boy",
-    "house": "hufflepuff"
+    "house": "hufflepuff",
+    "blood": "pure"
   },
   {
     "fullname": "megan Jones",
     "gender": "girl",
-    "house": "Hufflepuff"
+    "house": "Hufflepuff",
+    "blood": "half"
   },
   {
-    "fullname": " wayne hopkins",
+    "fullname": "wayne hopkins",
     "gender": "boy",
-    "house": "Hufflepuff"
+    "house": "Hufflepuff",
+    "blood": "half"
   },
   {
     "fullname": "Leanne",
     "gender": "girl",
-    "house": "hufflepuff"
+    "house": "hufflepuff",
+    "blood": "pure"
   },
   {
     "fullname": "Lavender brown",
     "gender": "girl",
-    "house": "Gryffindor"
+    "house": "Gryffindor",
+    "blood": "pure"
   },
   {
     "fullname": "Seamus finnigan ",
     "gender": "boy",
-    "house": "gryffindor"
+    "house": "gryffindor",
+    "blood": "half"
   },
   {
     "fullname": "hermione jean Granger",
     "gender": "girl",
-    "house": "Gryffindor"
+    "house": "Gryffindor",
+    "blood": "pure"
   },
   {
-    "fullname": " neville longbottom",
+    "fullname": "neville longbottom",
     "gender": "boy",
-    "house": "Gryffindor "
+    "house": "Gryffindor ",
+    "blood": "pure"
   },
   {
     "fullname": "Parvati Patil",
     "gender": "girl",
-    "house": "GRYFFINDOR"
+    "house": "GRYFFINDOR",
+    "blood": "half"
   },
   {
     "fullname": "harry James POTTER",
     "gender": "boy",
-    "house": " GRYFFINDOR"
+    "house": " GRYFFINDOR",
+    "blood": "half"
   },
   {
-    "fullname": " Dean Thomas",
+    "fullname": "Dean Thomas",
     "gender": "boy",
-    "house": "gryffindor"
+    "house": "gryffindor",
+    "blood": "half"
   },
   {
     "fullname": "RONald Bilius weasley",
     "gender": "boy",
-    "house": "Gryffindor"
+    "house": "Gryffindor",
+    "blood": "pure"
   },
   {
     "fullname": "Mandy brocklehurst",
     "gender": "girl",
-    "house": "Ravenclaw"
+    "house": "Ravenclaw",
+    "blood": "half"
   },
   {
     "fullname": "Padma Patil",
     "gender": "girl",
-    "house": "ravenclaw"
+    "house": "ravenclaw",
+    "blood": "half"
   },
   {
     "fullname": "lisa Turpin",
@@ -107,37 +129,43 @@
   {
     "fullname": "Stephen Cornfoot",
     "gender": "boy",
-    "house": "Hufflepuff"
+    "house": "Hufflepuff",
+    "blood": "pure"
   },
   {
     "fullname": "anthony goldstein",
     "gender": "boy",
-    "house": "Ravenclaw"
+    "house": "Ravenclaw",
+    "blood": "half"
   },
   {
     "fullname": "Michael Corner",
     "gender": "boy",
-    "house": "RAVENCLAW"
+    "house": "RAVENCLAW",
+    "blood": "half"
   },
   {
-    "fullname": " Kevin Entwistle",
+    "fullname": "Kevin Entwistle",
     "gender": "boy",
     "house": "Ravenclaw"
   },
   {
     "fullname": "Sue Li",
     "gender": "girl",
-    "house": "ravenclaw"
+    "house": "ravenclaw",
+    "blood": "half"
   },
   {
     "fullname": "draco lucius Malfoy",
     "gender": "boy",
-    "house": "Slytherin"
+    "house": "Slytherin",
+    "blood": "pure"
   },
   {
     "fullname": "Vincent Crabbe",
     "gender": "boy",
-    "house": "slytherin"
+    "house": "slytherin",
+    "blood": "pure"
   },
   {
     "fullname": "Tracey davis",
@@ -147,26 +175,31 @@
   {
     "fullname": "gregory Goyle",
     "gender": "boy",
-    "house": "Slytherin"
+    "house": "Slytherin",
+    "blood": "pure"
   },
   {
     "fullname": "Millicent bulstrode",
     "gender": "girl",
-    "house": "Slytherin"
+    "house": "Slytherin",
+    "blood": "pure"
   },
   {
     "fullname": "theodore Nott",
     "gender": "boy",
-    "house": "slYtherin"
+    "house": "slYtherin",
+    "blood": "pure"
   },
   {
     "fullname": "Daphne Greengrass",
     "gender": "girl",
-    "house": "Slytherin"
+    "house": "Slytherin",
+    "blood": "pure"
   },
   {
-    "fullname": " blaise Zabini",
+    "fullname": "blaise Zabini",
     "gender": "boy",
-    "house": "sLYTHERIN"
+    "house": "sLYTHERIN",
+    "blood": "pure"
   }
 ]

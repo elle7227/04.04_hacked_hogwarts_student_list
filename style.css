@@ -1,0 +1,56 @@
+[data-action] {
+    cursor: pointer;
+}
+
+#list {
+    border-collapse: collapse;
+}
+  
+#list tbody tr td {
+    padding: 4px;
+    
+}
+
+
+  .hide{
+    visibility: hidden;
+  }
+  
+  .modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(165, 180, 180, 0.632);
+  }
+  
+  .pop_op_content{
+    box-shadow: 1px 1px 1px #333;
+    border-radius: 12px;
+    padding: 2em;
+    background-color: #ffe191;
+    position: relative;
+    align-content: center;
+    width: 30%;
+    height: 40%;
+  }
+ 
+  #pop_op_info h1{
+    margin-top: 0;
+  }
+  
+  button.closebutton{
+    position: absolute;
+    right: -1em;
+    top: -1em;
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+  
+  }
+
+

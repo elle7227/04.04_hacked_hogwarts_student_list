@@ -16,6 +16,7 @@ const Student = {
     first_name: "",
     last_name: "",
     house: "",
+    blood: "",
    status: false
 };
 
@@ -65,11 +66,10 @@ function preapareObject( jsonObject ) {
     student.last_name = texts[1];
     student.house = jsonObject.house.toLowerCase();
     student.status = jsonObject.status;
+    student.blood = jsonObject.blood;
     
-
     return student;
 }
-
 
 
 
@@ -150,8 +150,6 @@ function isExpelled (student){
             return false; 
         }
 }
-
-
 
 
 
@@ -246,15 +244,21 @@ function displayStudent( student ) {
     clone.querySelector("[data-field=house]").textContent = student.house;
     clone.querySelector("button").addEventListener("click",()=>showPopUp(student));
 
+    document.querySelector(".closebutton").addEventListener("click",()=>pop_op_info.style.display="none");
+
 
   function showPopUp(student){
-    console.log("viser pop.up");
-    const pop_up_info =document.querySelector("#pop_up-info");
-    pop_up_info.style.display = "flex";
-    pop_up_info.querySelector("h1").textContent=student.first_name;
-  }
+        console.log("viser pop_op");
+        const pop_op_info =document.querySelector("#pop_op_info");
+        pop_op_info.style.display = "flex";
+        pop_op_info.querySelector("h1").textContent=student.first_name;
+        pop_op_info.querySelector("#lastName").textContent=student.last_name;
+        pop_op_info.querySelector("#house").textContent=student.house;
+        pop_op_info.querySelector("#blood").textContent = `Blood-status: ${student.blood}`;
 
+    }
 
+  
     if(student.star===true){
         clone.querySelector("[data-field=star]").textContent = "⭐";
     }else{
