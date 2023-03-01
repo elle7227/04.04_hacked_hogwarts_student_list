@@ -5,6 +5,8 @@ let filterBy="all";
 let allStudents = [];
 let searchBar = document.getElementById("searchbar");
 
+
+
 const settings = {
     filter:"all",
     sortBy: "first_name",
@@ -96,7 +98,7 @@ function filterlist(filteredList){
     }else if(settings.filterBy   ===  "expelled"){
         filteredList = allStudents.filter(isExpelled);
         }
-
+       
 
         document.querySelector("#searchBar").addEventListener("keyup",(e)=>{
             /*e.target er det event der trigger eventet = det bogstav der er tastet vises i inspect.*/
@@ -107,9 +109,10 @@ function filterlist(filteredList){
         }
             });
 
+        document.querySelector("#array_lenght").textContent = `Number of students: ${filteredList.length}`;
+
     return (filteredList);
 }
-
 
 function isGriffendor (student){
     if(student.house === "gryffindor"){
@@ -118,6 +121,7 @@ function isGriffendor (student){
         return false; 
     }
 }
+
 
 function isHufflepuff (student){
     if(student.house == "hufflepuff"){
@@ -206,9 +210,10 @@ function sortList(sortedList){
 function buildList(){
     const currentList = filterlist(allStudents);
     const sortedList = sortList(currentList);
-
     displayList(sortedList);
 }
+
+
 
 function sortByType(a,b){
     if(a.first_name< b.first_name){
