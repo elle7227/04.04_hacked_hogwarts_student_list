@@ -19,9 +19,10 @@ const Student = {
     last_name: "",
     house: "",
     blood: "",
-   status: false,
-   winner: false
+    status: false,
+    winner: false
 };
+
 
 
 function start( ) {
@@ -124,20 +125,48 @@ function filterlist(filteredList){
         filteredList = allStudents.filter(isExpelled);
     }
   
-    document.querySelector("#array_lenght").textContent = `Number of students: ${filteredList.length}`;
-    
+    //showing nymber of students in each house/category on interface
+
+    //number of displayed students
+    document.querySelector("#array_lenght").textContent = `Displayed students: ${filteredList.length}`;
+
+    //number of hufflepuff students
+    const huffleStudent = allStudents.filter(student => student.house =="hufflepuff");
+    document.querySelector("#nr_hufflepuff").textContent = `Hufflepuff students: ${huffleStudent.length}`;
+
+      //number of gryffin students
+      const gryffinStudents = allStudents.filter(student => student.house =="gryffindor");
+      document.querySelector("#nr_gryffindor").textContent = `Gryffindor students: ${gryffinStudents.length}`;
+
+       //number of slytherin students
+       const slytherStudents = allStudents.filter(student => student.house =="slytherin");
+       document.querySelector("#nr_slytherin").textContent = `Slytherin students: ${slytherStudents.length}`;
+
+
+       //number of ravenclaw students
+       const ravenStudents = allStudents.filter(student => student.house =="ravenclaw");
+       document.querySelector("#nr_ravenclaw").textContent = `Ravenclaw students: ${ravenStudents.length}`;
+
+        //number of expelled students
+        const expelledStudents = allStudents.filter(student => student.status ==false);
+        document.querySelector("#nr_expelled").textContent = `Expelled students: ${expelledStudents.length}`;
+  
     return (filteredList);
 }
 
 
+
+
+
 function isGriffendor (student){
+
     if(student.house === "gryffindor"){
         return true; 
     }else{
         return false; 
     }
-}
 
+}
 
 function isHufflepuff (student){
     if(student.house == "hufflepuff"){
@@ -165,7 +194,8 @@ function isSlytherin (student){
 
 function isExpelled (student){
     if(student.status == false){
-        return true; }
+        return true;
+    }
         else{
             return false; 
         }
@@ -229,6 +259,7 @@ function buildList(){
     const currentList = filterlist(allStudents);
     const sortedList = sortList(currentList);
     displayList(sortedList);
+
 }
 
 
