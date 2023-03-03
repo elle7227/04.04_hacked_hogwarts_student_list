@@ -19,7 +19,8 @@ const Student = {
     last_name: "",
     house: "",
     blood: "",
-   status: false
+   status: false,
+   winner: false
 };
 
 
@@ -75,6 +76,28 @@ function preapareObject( jsonObject ) {
 
 
 
+document.querySelector("#searchBar").addEventListener("keyup",(e)=>{
+    console.log(e.target.value);
+    const searchtarget = e.target.value;
+    /* filterkeramik2 defineres som værende produkter (som returneres) hvori de indtastede bogstaver indår i navnet*/
+    const filteredstudents = allStudents.filter(student=>{
+      return(student.first_name.includes(searchtarget));
+    });
+    console.log(filteredstudents);
+    search();
+        });
+    
+function search(){
+        allStudents.forEach(student =>{
+            const searchtarget = event.target.value;
+            console.log(event.target.value);
+            if(student.first_name.includes(searchtarget)){
+            buildList();              
+            }
+        });
+}
+    
+    
 function selectFilter(event){
     const filter = event.target.dataset.filter;
     console.log(`user selected ${filter}`);
@@ -85,6 +108,8 @@ function setFilter(filter){
     settings.filterBy = filter;
     buildList();
 }
+
+
 
 function filterlist(filteredList){
     if(settings.filterBy === "gryffindor"){
@@ -97,22 +122,13 @@ function filterlist(filteredList){
     filteredList = allStudents.filter(isSlytherin);
     }else if(settings.filterBy   ===  "expelled"){
         filteredList = allStudents.filter(isExpelled);
-        }
-       
-
-        document.querySelector("#searchBar").addEventListener("keyup",(e)=>{
-            /*e.target er det event der trigger eventet = det bogstav der er tastet vises i inspect.*/
-        console.log(e.target.value);
-        const searchtarget = e.target.value;
-        if(student.first_name.includes(searchtarget)){
-            return (filteredList);
-        }
-            });
-
-        document.querySelector("#array_lenght").textContent = `Number of students: ${filteredList.length}`;
-
+    }
+  
+    document.querySelector("#array_lenght").textContent = `Number of students: ${filteredList.length}`;
+    
     return (filteredList);
 }
+
 
 function isGriffendor (student){
     if(student.house === "gryffindor"){
@@ -207,12 +223,13 @@ function sortList(sortedList){
     return sortedList;
 }
 
+
+
 function buildList(){
     const currentList = filterlist(allStudents);
     const sortedList = sortList(currentList);
     displayList(sortedList);
 }
-
 
 
 function sortByType(a,b){
@@ -222,15 +239,6 @@ function sortByType(a,b){
         return 1;
     }
 }
-
-function searchString(){
-    const searchString = event.target.value;
-          if (elm.mal.includes(searchString)){
-            displayStudent(student);
-          }
-}
-
-
 
 
 function displayList(students) {
@@ -252,16 +260,15 @@ function displayStudent( student ) {
     document.querySelector(".closebutton").addEventListener("click",()=>pop_op_info.style.display="none");
 
 
-  function showPopUp(student){
-        console.log("viser pop_op");
-        const pop_op_info =document.querySelector("#pop_op_info");
-        pop_op_info.style.display = "flex";
-        pop_op_info.querySelector("h1").textContent=student.first_name;
-        pop_op_info.querySelector("#lastName").textContent=student.last_name;
-        pop_op_info.querySelector("#house").textContent=student.house;
-        pop_op_info.querySelector("#blood").textContent = `Blood-status: ${student.blood}`;
-
-    }
+function showPopUp(student){
+    console.log("viser pop_op");
+    const pop_op_info =document.querySelector("#pop_op_info");
+    pop_op_info.style.display = "flex";
+    pop_op_info.querySelector("h1").textContent=student.first_name;
+    pop_op_info.querySelector("#lastName").textContent=student.last_name;
+    pop_op_info.querySelector("#house").textContent=student.house;
+    pop_op_info.querySelector("#blood").textContent = `Blood-status: ${student.blood}`;
+}
 
   
     if(student.star===true){
@@ -281,12 +288,12 @@ function displayStudent( student ) {
         buildList();
     }
 
-    clone.querySelector("[data-field=status]").dataset.status = student.status;
-    clone.querySelector("[data-field=status]").addEventListener("click", clickStatus);
+    clone.querySelector("[data-field=winner]").dataset.winner = student.winner;
+    clone.querySelector("[data-field=winner]").addEventListener("click", clickWinner);
 
-    function clickStatus(){
-        if(student.status===true){
-            student.status =false;
+    function clickWinner(){
+        if(student.winner===true){
+            student.winner =false;
         }else{
             tryToMakeAWinner(student);
         }
@@ -297,6 +304,8 @@ function displayStudent( student ) {
     document.querySelector("#list tbody").appendChild( clone );
     
 }
+
+
 
 function tryToMakeAWinner(selectedStudent){
  
@@ -318,7 +327,7 @@ function tryToMakeAWinner(selectedStudent){
     function removeOther(other){
         //ask user to ignore og remove other
         document.querySelector("#remove_other").classList.remove("hide");
-        document.querySelector("#remove_other .closebutton").addEventListener("click", closeDialog);
+        document.querySelector("#remove_other .closebutton1").addEventListener("click", closeDialog);
         document.querySelector("#remove_other #remove_other_button").addEventListener("click", clickRemoveOther);
 
         document.querySelector("#remove_other [data-field=otherwinner]").textContent=other.first_name;
@@ -326,7 +335,7 @@ function tryToMakeAWinner(selectedStudent){
         //if ignore do nothing 
         function closeDialog(){
             document.querySelector("#remove_other").classList.add("hide");
-            document.querySelector("#remove_other .closebutton").removeEventListener("click", closeDialog);
+            document.querySelector("#remove_other .closebutton1").removeEventListener("click", closeDialog);
         document.querySelector("#remove_other #remove_other_button").removeEventListener("click", clickRemoveOther);
         }
 
@@ -346,7 +355,7 @@ function removeAorB(winnerA, winnerB){
     //ask user to ignore og remove a or b
 
     document.querySelector("#remove_aorb").classList.remove("hide");
-    document.querySelector("#remove_aorb .closebutton").addEventListener("click", closeDialog);
+    document.querySelector("#remove_aorb .closebutton1").addEventListener("click", closeDialog);
     document.querySelector("#remove_aorb #remove_a").addEventListener("click", clickRemoveA);
     document.querySelector("#remove_aorb #remove_b").addEventListener("click", clickRemoveB);
 
@@ -358,9 +367,9 @@ function removeAorB(winnerA, winnerB){
     //if ignore do nothing 
     function closeDialog(){
         document.querySelector("#remove_aorb").classList.add("hide");
-        document.querySelector("#remove_aorb .closebutton").removeEventListener("click", closeDialog);
-        //document.querySelector("#remove_aorb #remove_a").removeEventListener("click", clickRemoveA);
-        //document.querySelector("#remove_aorb #remove_b").removeEventListener("click", clickRemoveB);
+        document.querySelector("#remove_aorb .closebutton1").removeEventListener("click", closeDialog);
+        document.querySelector("#remove_aorb #remove_a").removeEventListener("click", clickRemoveA);
+        document.querySelector("#remove_aorb #remove_b").removeEventListener("click", clickRemoveB);
     }
 
      //if remove a 

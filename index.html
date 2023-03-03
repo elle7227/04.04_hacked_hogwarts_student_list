@@ -26,6 +26,7 @@
     <table id="list">
         <thead>
           <tr id="sorting">
+            <th data-action="sort" data-sort-direction="asc" data-sort="winner">winner</th>
             <th data-action="sort" data-sort-direction="asc" data-sort="status">Status</th>
             <th data-action="sort" data-sort-direction="asc" data-sort="star">Star</th>
             <th data-action="sort" data-sort-direction="asc" data-sort="first_name">First name</th>
@@ -41,6 +42,7 @@
 
     <template id="student">
         <tr>
+          <td data-field="winner" data-winner="false"></td>
           <td data-field="status" data-status="false"></td>
           <td data-field="star">☆</td>
           <td data-field="first_name">Name</td>
@@ -50,6 +52,32 @@
 
         </tr>
       </template>
+
+
+      <div id="remove_other" class="modal hide">
+        <div class="dialog1">
+            <button class="closebutton1">X</button>
+            <h1>Warning!</h1>
+            <p>there can only be one winner of each type <br>
+            do you want to remove other winner?</p>
+            <button id="remove_other_button">remove<span data-field="otherwinner">Other</span></button>
+        </div>
+      </div>
+  
+      <div id="remove_aorb" class="modal hide">
+        <div class="dialog1">
+            <button class="closebutton1">X</button>
+            <h1>Warning!</h1>
+            <p>there can not be any more than 2 winners <br>
+            do you want to remove one of the existing winners?</p>
+            <div class="sidebyside">
+              <button id="remove_a">remove <span data-field="winnerA">A</span></button>
+              <button id="remove_b">remove <span data-field="winnerB">B</span></button>
+            </div>
+        </div>
+      </div>
+
+
 
     <div id="pop_op_info" class="modal" >
         <article class="pop_op_content">

@@ -7,10 +7,17 @@
 }
   
 #list tbody tr td {
-    padding: 4px;
-    
+    padding: 4px; 
 }
 
+
+td[data-field=winner]::after{
+    content:"🔔";
+  }
+  
+  td[data-field=winner][data-winner=false]::after{
+  filter: grayscale(1);
+  }
 
   .hide{
     visibility: hidden;
