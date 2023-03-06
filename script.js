@@ -291,7 +291,7 @@ function displayStudent( student ) {
     document.querySelector(".closebutton").addEventListener("click",()=>pop_op_info.style.display="none");
 
 
-function showPopUp(student){
+    function showPopUp(student){
     console.log("viser pop_op");
     const pop_op_info =document.querySelector("#pop_op_info");
     pop_op_info.style.display = "flex";
@@ -299,7 +299,7 @@ function showPopUp(student){
     pop_op_info.querySelector("#lastName").textContent=student.last_name;
     pop_op_info.querySelector("#house").textContent=student.house;
     pop_op_info.querySelector("#blood").textContent = `Blood-status: ${student.blood}`;
-}
+    }
 
   
     if(student.star===true){
@@ -337,21 +337,23 @@ function showPopUp(student){
 }
 
 
-
 function tryToMakeAWinner(selectedStudent){
  
     const winners = allStudents.filter(student => student.winner);
     console.log(winners);
+    console.log(winners.length);
+    document.querySelector("#prefect_students").textContent = `Selected prefects: ${winners.length}`;
+ 
 
-    const numberOfWinners = winners.length;
+    //const numberOfWinners = winners.length;
     const other = winners.filter(student=> student.house ===selectedStudent.house).shift();
 
     //if there is another of the same type
     if(other !==undefined){
         removeOther(other);
-    }else if(numberOfWinners >= 2){
-        removeAorB(winners[0], winners[1]);
-    }else{
+    }//else if(numberOfWinners >= 2){
+        //removeAorB(winners[0], winners[1]);}
+        else{
         makeWinner(selectedStudent);
     }
 
@@ -428,6 +430,7 @@ function removeWinner(winnerStudent){
 
 function makeWinner(student){
     student.winner=true; 
+ 
 }
 
 
