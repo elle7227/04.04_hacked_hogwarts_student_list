@@ -4,27 +4,29 @@
     "gender": "girl",
     "house": "slytherin",
     "blood": "pure",
-    "status": false
+    "expelled": false
   },
   {
     "fullname": "hannah Abbott",
     "gender": "girl",
     "house": " Hufflepuff ",
     "blood": "half",
-    "status": true
+    "expelled": false
   },
   {
     "fullname": "Susan bones",
     "gender": "girl",
     "house": "hufflepuff",
     "blood": "half",
-    "status": false
+    "expelled": false
+  
   },
   {
     "fullname": "Justin Finch-Fletchley",
     "gender": "boy",
     "house": "Hufflepuff",
     "blood": "pure"
+    
   },
   {
     "fullname": "Terry BOOT",

@@ -34,7 +34,6 @@
         <thead>
           <tr id="sorting">
             <th data-action="sort" data-sort-direction="asc" data-sort="winner">winner</th>
-            <th data-action="sort" data-sort-direction="asc" data-sort="status">Status</th>
             <th data-action="sort" data-sort-direction="asc" data-sort="star">Star</th>
             <th data-action="sort" data-sort-direction="asc" data-sort="first_name">First name</th>
             <th data-action="sort" data-sort-direction="asc" data-sort="last_name">Last name</th>
@@ -50,8 +49,7 @@
     <template id="student">
         <tr>
           <td data-field="winner" data-winner="false"></td>
-          <td data-field="status" data-status="false"></td>
-          <td data-field="star">☆</td>
+          <td data-field="star" data-star="false">☆</td>
           <td data-field="first_name">Name</td>
           <td data-field="last_name">Last name</td>
           <td data-field="house">House</td>
@@ -94,6 +92,7 @@
             <p id="lastName">last name</p>
             <p id="house">house</p>
             <p id="blood">blood</p>
+            <img id="picture" src="" alt="picture" />
         </article>
     </div>
 
