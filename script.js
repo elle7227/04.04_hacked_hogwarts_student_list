@@ -170,7 +170,7 @@ function filterlist(filteredList) {
   //showing nymber of students in each house/category on interface
 
   //number of displayed students
-  document.querySelector("#array_lenght").textContent = `Displayed students: ${filteredList.length}`;
+  document.querySelector("#array_lenght").textContent = `Displayed students: ${allStudents.length}`;
 
   //number of hufflepuff students
   const huffleStudent = allStudents.filter((student) => student.house == "Hufflepuff");
@@ -187,10 +187,6 @@ function filterlist(filteredList) {
   //number of ravenclaw students
   const ravenStudents = allStudents.filter((student) => student.house == "Ravenclaw");
   document.querySelector("#nr_ravenclaw").textContent = `Ravenclaw students: ${ravenStudents.length}`;
-
-  //number of expelled students
-  const expelledStudents = allStudents.filter((student) => student.expelled == false);
-  document.querySelector("#nr_expelled").textContent = `Expelled students: ${expelledStudents.length}`;
 
   return filteredList;
 }
@@ -226,12 +222,11 @@ function isSlytherin(student) {
     return false;
   }
 }
-
 function isExpelled(student) {
+  console.log("expelled st");
   if (student.expelled == false) {
     return true;
   } else {
-    console.log("student expelled");
     return false;
   }
 }
@@ -300,7 +295,7 @@ function displayList(students) {
   document.querySelector("#list tbody").innerHTML = "";
   // build a new list
   students.forEach(displayStudent);
-  document.querySelector("#nr_expelled").innerHTML = `Students expelled: ${expelledStudents.length}`;
+  document.querySelector("#nr_expelled").innerHTML = `Students expelled: ${expelledStudents.length + 0}`;
 }
 
 function displayStudent(student) {
@@ -322,36 +317,34 @@ function displayStudent(student) {
     pop_op_info.querySelector("#lastName").textContent = student.last_name;
     pop_op_info.querySelector("#house").textContent = student.house;
     pop_op_info.querySelector("#blood").textContent = `Blood-status: ${student.blood}`;
-    pop_op_info.querySelector("#inquisitorial").textContent = `Inquisitorial: ${student.inquisitorial}`;
+    pop_op_info.querySelector("#inquisitorial").textContent = "Inquisitorial: false";
+
     pop_op_info.querySelector("#picture").src = student.image;
 
     if (student.blood == "pure" || student.house == "Slytherin") {
       pop_op_info.querySelector("#makeIT").addEventListener("click", clickSquad);
       pop_op_info.querySelector("#makeIT").style.display = "block";
-      pop_op_info.querySelector("#inquisitorial").style.display = "block";
     } else {
-      pop_op_info.querySelector("#inquisitorial").style.display = "none";
       pop_op_info.querySelector("#makeIT").style.display = "none";
     }
 
     function clickSquad() {
-      if ((hacked = true)) {
+      if (hacked) {
         student.inquisitorial = true;
         setTimeout(removeInquisitorial, 1000);
-
         function removeInquisitorial() {
           student.inquisitorial = false;
           pop_op_info.querySelector("#inquisitorial").textContent = `Inquisitorial: ${student.inquisitorial}`;
         }
       } else {
         if (student.inquisitorial) {
-          document.getElementById("makeIT").textContent = "Add Inquisitorial";
           student.inquisitorial = false;
+          pop_op_info.querySelector("#inquisitorial").textContent = `Inquisitorial: ${student.inquisitorial}`;
         } else {
-          document.getElementById("makeIT").textContent = "Remove Inquisitorial";
           student.inquisitorial = true;
         }
       }
+      buildList();
       pop_op_info.querySelector("#inquisitorial").textContent = `Inquisitorial: ${student.inquisitorial}`;
     }
 
@@ -364,11 +357,11 @@ function displayStudent(student) {
       } else {
         alert("not possible");
       }
-      buildList();
       close();
     }
     function close() {
       document.querySelector("#pop_op_info").style.display = "none";
+      buildList();
     }
   }
 
@@ -392,7 +385,7 @@ function tryToMakeAWinner(selectedStudent) {
   const winners = allStudents.filter((student) => student.winner);
   console.log(winners);
   console.log(winners.length);
-  document.querySelector("#prefect_students").textContent = `Selected prefects: ${winners.length}`;
+  document.querySelector("#prefect_students").textContent = `Selected prefects: ${winners.length + 1}`;
 
   //const numberOfWinners = winners.length;
   const other = winners.filter((student) => student.house === selectedStudent.house).shift();
@@ -483,6 +476,7 @@ function starthack() {
 }
 
 function hackTheSystem() {
+  hacked = true;
   buildList();
   console.log("hacked with random and push ellen ");
 
