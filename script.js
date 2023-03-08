@@ -3,7 +3,9 @@
 window.addEventListener("DOMContentLoaded", start);
 let filterBy = "all";
 let allStudents = [];
+let expelledStudents = [];
 let searchBar = document.getElementById("searchbar");
+let hacked = false;
 
 const settings = {
   filter: "all",
@@ -22,18 +24,24 @@ const Student = {
   image: "",
   expelled: false,
   winner: false,
+  inquisitorial: false,
 };
+
+//hide the pop_op from start
+document.querySelector("#pop_op_info").style.display = "none";
 
 async function start() {
   console.log("ready");
   await loadJSON();
 
-  // call function that adds event-listeners to filter and sort buttons
+  //call function that adds event-listeners to filter and sort buttons
   registerButtons();
 }
 
 //function that adds event-listeners to filter and sort buttons
 function registerButtons() {
+  document.querySelector("#hack_button").addEventListener("click", starthack);
+
   //event-listeners to filter buttons
   document.querySelectorAll(`[data-action="filter"]`).forEach((button) => button.addEventListener("click", selectFilter));
 
@@ -48,8 +56,6 @@ async function loadJSON() {
   // when loaded, prepare data objects
   prepareObjects(jsonData);
 }
-
-//fetch data families from json file
 
 function prepareObjects(jsonData) {
   allStudents = jsonData.map(prepareObject);
@@ -108,6 +114,8 @@ function prepareObject(jsonObject) {
   student.blood = jsonObject.blood;
 
   student.expelled = jsonObject.expelled;
+
+  student.inquisitorial = jsonObject.inquisitorial;
 
   return student;
 }
@@ -292,6 +300,7 @@ function displayList(students) {
   document.querySelector("#list tbody").innerHTML = "";
   // build a new list
   students.forEach(displayStudent);
+  document.querySelector("#nr_expelled").innerHTML = `Students expelled: ${expelledStudents.length}`;
 }
 
 function displayStudent(student) {
@@ -313,24 +322,54 @@ function displayStudent(student) {
     pop_op_info.querySelector("#lastName").textContent = student.last_name;
     pop_op_info.querySelector("#house").textContent = student.house;
     pop_op_info.querySelector("#blood").textContent = `Blood-status: ${student.blood}`;
+    pop_op_info.querySelector("#inquisitorial").textContent = `Inquisitorial: ${student.inquisitorial}`;
     pop_op_info.querySelector("#picture").src = student.image;
-  }
 
-  if (student.star === true) {
-    clone.querySelector("[data-field=star]").textContent = "⭐";
-  } else {
-    clone.querySelector("[data-field=star]").textContent = "☆";
-  }
-
-  clone.querySelector("[data-field=star]").addEventListener("click", clickStar);
-
-  function clickStar() {
-    if (student.star === true) {
-      student.star = false;
+    if (student.blood == "pure" || student.house == "Slytherin") {
+      pop_op_info.querySelector("#makeIT").addEventListener("click", clickSquad);
+      pop_op_info.querySelector("#makeIT").style.display = "block";
+      pop_op_info.querySelector("#inquisitorial").style.display = "block";
     } else {
-      student.star = true;
+      pop_op_info.querySelector("#inquisitorial").style.display = "none";
+      pop_op_info.querySelector("#makeIT").style.display = "none";
     }
-    buildList();
+
+    function clickSquad() {
+      if ((hacked = true)) {
+        student.inquisitorial = true;
+        setTimeout(removeInquisitorial, 1000);
+
+        function removeInquisitorial() {
+          student.inquisitorial = false;
+          pop_op_info.querySelector("#inquisitorial").textContent = `Inquisitorial: ${student.inquisitorial}`;
+        }
+      } else {
+        if (student.inquisitorial) {
+          document.getElementById("makeIT").textContent = "Add Inquisitorial";
+          student.inquisitorial = false;
+        } else {
+          document.getElementById("makeIT").textContent = "Remove Inquisitorial";
+          student.inquisitorial = true;
+        }
+      }
+      pop_op_info.querySelector("#inquisitorial").textContent = `Inquisitorial: ${student.inquisitorial}`;
+    }
+
+    pop_op_info.querySelector("button#expell").addEventListener("click", expelStudent);
+
+    function expelStudent() {
+      if (student.first_name != "Ellen" && student.last_name != "Sørensen") {
+        allStudents.splice(allStudents.indexOf(student), 1);
+        expelledStudents.push(student);
+      } else {
+        alert("not possible");
+      }
+      buildList();
+      close();
+    }
+    function close() {
+      document.querySelector("#pop_op_info").style.display = "none";
+    }
   }
 
   clone.querySelector("[data-field=winner]").dataset.winner = student.winner;
@@ -435,4 +474,45 @@ function removeWinner(winnerStudent) {
 
 function makeWinner(student) {
   student.winner = true;
+}
+
+function starthack() {
+  hacked = true;
+  console.log("system is hacked");
+  hackTheSystem();
+}
+
+function hackTheSystem() {
+  buildList();
+  console.log("hacked with random and push ellen ");
+
+  let random;
+  allStudents.forEach((student) => {
+    random = Math.floor(Math.random() * 3);
+    if (random == 0) {
+      student.blood = "pure";
+    } else if (random == 1) {
+      student.blood = "half";
+    } else {
+      student.blood = "muggle-blood";
+    }
+    buildList();
+    student.inquisitorial = false;
+  });
+
+  const mySelf = {
+    first_name: "Ellen",
+    last_name: "Sørensen",
+    middleName: "hein",
+    nickName: "",
+    house: "Gryffindor",
+    blood: "pure",
+    image: "",
+    expelled: false,
+    winner: false,
+    inquisitorial: false,
+  };
+
+  allStudents.push(mySelf);
+  buildList();
 }

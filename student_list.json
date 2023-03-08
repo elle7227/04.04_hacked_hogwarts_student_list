@@ -3,22 +3,22 @@
     "fullname": "Pansy parkinson",
     "gender": "girl",
     "house": "slytherin",
-    "blood": "pure",
-    "expelled": false
+    "blood": "pure"
+  
   },
   {
     "fullname": "hannah Abbott",
     "gender": "girl",
     "house": " Hufflepuff ",
-    "blood": "half",
-    "expelled": false
+    "blood": "half"
+    
   },
   {
     "fullname": "Susan bones",
     "gender": "girl",
     "house": "hufflepuff",
-    "blood": "half",
-    "expelled": false
+    "blood": "half"
+
   
   },
   {
