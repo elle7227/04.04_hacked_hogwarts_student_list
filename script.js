@@ -222,6 +222,7 @@ function isSlytherin(student) {
     return false;
   }
 }
+
 function isExpelled(student) {
   console.log("expelled st");
   if (student.expelled == false) {
@@ -292,7 +293,7 @@ function sortByType(a, b) {
 
 function displayList(students) {
   // clear the list
-  document.querySelector("#list tbody").innerHTML = "";
+  document.querySelector("#student_insert").innerHTML = "";
   // build a new list
   students.forEach(displayStudent);
   document.querySelector("#nr_expelled").innerHTML = `Students expelled: ${expelledStudents.length + 0}`;
@@ -300,7 +301,7 @@ function displayList(students) {
 
 function displayStudent(student) {
   // create clone
-  const clone = document.querySelector("template#student").content.cloneNode(true);
+  const clone = document.querySelector("#student").content.cloneNode(true);
   // set clone data
   clone.querySelector("[data-field=first_name]").textContent = student.first_name;
   clone.querySelector("[data-field=last_name]").textContent = student.last_name;
@@ -378,7 +379,7 @@ function displayStudent(student) {
   }
 
   // append clone to list
-  document.querySelector("#list tbody").appendChild(clone);
+  document.querySelector("#student_insert").appendChild(clone);
 }
 
 function tryToMakeAWinner(selectedStudent) {
