@@ -170,23 +170,23 @@ function filterlist(filteredList) {
   //showing nymber of students in each house/category on interface
 
   //number of displayed students
-  document.querySelector("#array_lenght").textContent = `Displayed students: ${allStudents.length}`;
+  document.querySelector("#array_lenght").textContent = `Displaying: ${allStudents.length} students`;
 
   //number of hufflepuff students
   const huffleStudent = allStudents.filter((student) => student.house == "Hufflepuff");
-  document.querySelector("#nr_hufflepuff").textContent = `Hufflepuff students: ${huffleStudent.length}`;
+  document.querySelector("#nr_hufflepuff").textContent = `Hufflepuff: ${huffleStudent.length} students`;
 
   //number of gryffin students
   const gryffinStudents = allStudents.filter((student) => student.house == "Gryffindor");
-  document.querySelector("#nr_gryffindor").textContent = `Gryffindor students: ${gryffinStudents.length}`;
+  document.querySelector("#nr_gryffindor").textContent = `Gryffindor: ${gryffinStudents.length} students`;
 
   //number of slytherin students
   const slytherStudents = allStudents.filter((student) => student.house == "Slytherin");
-  document.querySelector("#nr_slytherin").textContent = `Slytherin students: ${slytherStudents.length}`;
+  document.querySelector("#nr_slytherin").textContent = `Slytherin: ${slytherStudents.length} students`;
 
   //number of ravenclaw students
   const ravenStudents = allStudents.filter((student) => student.house == "Ravenclaw");
-  document.querySelector("#nr_ravenclaw").textContent = `Ravenclaw students: ${ravenStudents.length}`;
+  document.querySelector("#nr_ravenclaw").textContent = `Ravenclaw: ${ravenStudents.length} students`;
 
   return filteredList;
 }
@@ -388,7 +388,7 @@ function tryToMakeAWinner(selectedStudent) {
   const winners = allStudents.filter((student) => student.winner);
   console.log(winners);
   console.log(winners.length);
-  document.querySelector("#prefect_students").textContent = `Selected prefects: ${winners.length + 1}`;
+  document.querySelector("#prefect_students").textContent = `Prefects: ${winners.length + 1}`;
 
   //const numberOfWinners = winners.length;
   const other = winners.filter((student) => student.house === selectedStudent.house).shift();
@@ -482,6 +482,7 @@ function hackTheSystem() {
   hacked = true;
   buildList();
   console.log("hacked with random and push ellen ");
+  document.body.style.backgroundColor = "beige";
 
   let random;
   allStudents.forEach((student) => {

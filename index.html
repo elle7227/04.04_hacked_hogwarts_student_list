@@ -21,15 +21,18 @@
 
             <div class="filter_sort_buttons">
                 <div class="filtering"
-                    <button class="filter" data-action="filter" data-filter="*">all</button>
+                    <button class="filter" data-action="filter" data-filter="*">SHOW ALL STUDENTS</button>
+                    <h3>Filter by house</h3>
                     <button class="filter" data-action="filter" data-filter="gryffindor">Gryffindor</button>
                     <button class="filter" data-action="filter" data-filter="hufflepuff">Hufflepuff</button>
                     <button class="filter" data-action="filter" data-filter="ravenclaw">Ravenclaw</button>
                     <button class="filter" data-action="filter" data-filter="slytherin">Slytherin</button>
-                    <button class="filter" data-action="filter" data-filter="expelled">Expelled students</button>
+                    <hr>
+                    <button class="filter" data-action="filter" data-filter="expelled">Show expelled students</button>
                 </div>
                 <div class="sorting">
-                    <button data-action="sort" data-sort-direction="asc" data-sort="winner">winner</button>
+                    <h3>Sort on:</h3>
+                    <button data-action="sort" data-sort-direction="asc" data-sort="winner">Winners</button>
                     <button data-action="sort" data-sort-direction="asc" data-sort="first_name">First name</button>
                     <button data-action="sort" data-sort-direction="asc" data-sort="last_name">Last name</button>
                     <button data-action="sort" data-sort-direction="asc" data-sort="house">House</button>
@@ -50,13 +53,16 @@
             </template>
 
             <div id="counting_text">
-                <h3 id="array_lenght">array lenght</h3>
-                <h3 id="prefect_students">Selected prefects</h3>
-                <h4 id="nr_expelled"></h4>
+                <h4 id="array_lenght">array lenght</h4>
+                <h3>Houses</h3>
                 <h4 id="nr_hufflepuff" class="house_count"></h4>
                 <h4 id="nr_gryffindor" class="house_count"></h4>
                 <h4 id="nr_ravenclaw" class="house_count"></h4>
                 <h4 id="nr_slytherin" class="house_count"></h4>
+                <h3>Students</h3>
+                <h4 id="prefect_students">Prefects:</h4>
+                <h4 id="nr_expelled">Expelled students:</h4>
+               
             </div>
 
         </div>

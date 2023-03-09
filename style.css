@@ -11,6 +11,9 @@ h1{
   margin-top: 5%;
 }
 
+#search_and_hack{
+  text-align: center;
+}
 
 .grid_container{
   margin-top: 10px;
@@ -25,17 +28,24 @@ h1{
   row-gap: 10px;
   margin-block-start: 70px;
 place-content: center;
+margin-inline: -120px;
 }
 
 article#single_student{
-  background-color: rgb(138, 133, 137);
-  border: solid 1px #333;
+background-color: rgba(246, 245, 245, 0.208);
+  border: solid 2px rgb(255, 255, 255);
+}
+
+article#single_student p{
+  text-align: center;
 }
 
 article#single_student button{
   background-color: #ffe191;
   text-align: center;
-  margin: 20px
+  margin-top:-20px;
+  margin-inline: 25px;
+  padding: auto;
 }
 
 
@@ -48,21 +58,16 @@ article#single_student button{
 }
 
 
-#search_and_hack{
-  text-align: center;
-}
+
 
 
 #counting_text{
   display: inline-block;
-  margin-inline-end: 20px;
+
   text-align: left;
  margin-inline: auto;
- padding: 20px;
  
  
-
-
 }
 
 
@@ -77,13 +82,18 @@ article#single_student button{
 [data-field=winner]::after{
     content:"🔔";
   }
-  
+
+
+
   [data-field=winner][data-winner=false]::after{
   filter: grayscale(1);
   }
 
 .knapper{
   display: flex;
+  flex-direction:column;
+  margin-bottom: 15px;
+  padding: auto;
 }
 
   .hide{
