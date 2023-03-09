@@ -15,88 +15,90 @@
         <button id="hack_button">hack</button>
     </div>
 
-    <div id="counting_text">
-        <h3 id="array_lenght">array lenght</h3>
-        <h3 id="prefect_students">Selected prefects</h3>
-        <h4 id="nr_expelled"></h4>
-        <h4 id="nr_hufflepuff" class="house_count"></h4>
-        <h4 id="nr_gryffindor" class="house_count"></h4>
-        <h4 id="nr_ravenclaw" class="house_count"></h4>
-        <h4 id="nr_slytherin" class="house_count"></h4>
-    </div>
-
-    <div id="filter_buttons">
-        <button class="filter" data-action="filter" data-filter="*">all</button>
-        <button class="filter" data-action="filter" data-filter="gryffindor">Gryffindor</button>
-        <button class="filter" data-action="filter" data-filter="hufflepuff">Hufflepuff</button>
-        <button class="filter" data-action="filter" data-filter="ravenclaw">Ravenclaw</button>
-            <button class="filter" data-action="filter" data-filter="slytherin">Slytherin</button>
-            <button class="filter" data-action="filter" data-filter="expelled">Expelled students</button>
-        
-    </div>
-        
-        <article id="list">
-            <div class="sorting">
-                <button data-action="sort" data-sort-direction="asc" data-sort="winner">winner</button>
-                <button data-action="sort" data-sort-direction="asc" data-sort="first_name">First name</button>
-                <th data-action="sort" data-sort-direction="asc" data-sort="last_name">Last name</th>
-                <th data-action="sort" data-sort-direction="asc" data-sort="house">House</th>
-            </div>
-            
-            <table id="student_insert">
-            <!-- student template will be copied and inserted here -->
-            </table>
-        </article>
-
-        <template id="student">
-                <td data-field="winner" data-winner="false"></td>
-                <td data-field="first_name">Name</td>
-                <td data-field="last_name">Last name</td>
-                <td data-field="house">House</td>
-                <button>se mere</button>
-        </template>
+    <section class="main">
+        <div class="grid_container">
 
 
-        <div id="remove_other" class="modal hide">
-            <div class="dialog1">
-                <button class="closebutton1">X</button>
-                <h1>Warning!</h1>
-                <p>there can only be one winner of each type <br>
-                do you want to remove other winner?</p>
-                <button id="remove_other_button">remove<span data-field="otherwinner">Other</span></button>
-            </div>
-        </div>
-    
-        <div id="remove_aorb" class="modal hide">
-            <div class="dialog1">
-                <button class="closebutton1">X</button>
-                <h1>Warning!</h1>
-                <p>there can not be any more than 2 winners <br>
-                do you want to remove one of the existing winners?</p>
-                <div class="sidebyside">
-                <button id="remove_a">remove <span data-field="winnerA">A</span></button>
-                <button id="remove_b">remove <span data-field="winnerB">B</span></button>
+            <div class="filter_sort_buttons">
+                <div class="filtering"
+                    <button class="filter" data-action="filter" data-filter="*">all</button>
+                    <button class="filter" data-action="filter" data-filter="gryffindor">Gryffindor</button>
+                    <button class="filter" data-action="filter" data-filter="hufflepuff">Hufflepuff</button>
+                    <button class="filter" data-action="filter" data-filter="ravenclaw">Ravenclaw</button>
+                    <button class="filter" data-action="filter" data-filter="slytherin">Slytherin</button>
+                    <button class="filter" data-action="filter" data-filter="expelled">Expelled students</button>
+                </div>
+                <div class="sorting">
+                    <button data-action="sort" data-sort-direction="asc" data-sort="winner">winner</button>
+                    <button data-action="sort" data-sort-direction="asc" data-sort="first_name">First name</button>
+                    <button data-action="sort" data-sort-direction="asc" data-sort="last_name">Last name</button>
+                    <button data-action="sort" data-sort-direction="asc" data-sort="house">House</button>
                 </div>
             </div>
+
+            <div id="holder"></div>
+            <template>
+                <article id="single_student">
+                    <p data-field="first_name">Name</p>
+                    <p data-field="last_name">Last name</p>
+                    <p data-field="house">House</p>
+                    <div class="knapper">
+                        <buttom data-field="winner" data-winner="false"></buttom>
+                        <button>se mere</button>
+                    </div>
+                </article>
+            </template>
+
+            <div id="counting_text">
+                <h3 id="array_lenght">array lenght</h3>
+                <h3 id="prefect_students">Selected prefects</h3>
+                <h4 id="nr_expelled"></h4>
+                <h4 id="nr_hufflepuff" class="house_count"></h4>
+                <h4 id="nr_gryffindor" class="house_count"></h4>
+                <h4 id="nr_ravenclaw" class="house_count"></h4>
+                <h4 id="nr_slytherin" class="house_count"></h4>
+            </div>
+
         </div>
+    </section>
 
-
+    <div id="remove_other" class="modal hide">
+        <div class="dialog1">
+            <button class="closebutton1">X</button>
+            <h1>Warning!</h1>
+            <p>there can only be one winner of each type <br>
+            do you want to remove other winner?</p>
+            <button id="remove_other_button">remove<span data-field="otherwinner">Other</span></button>
+        </div>
+    </div>
+    
+    <div id="remove_aorb" class="modal hide">
+        <div class="dialog1">
+            <button class="closebutton1">X</button>
+            <h1>Warning!</h1>
+            <p>there can not be any more than 2 winners <br>
+            do you want to remove one of the existing winners?</p>
+            <div class="sidebyside">
+                <button id="remove_a">remove <span data-field="winnerA">A</span></button>
+                <button id="remove_b">remove <span data-field="winnerB">B</span></button>
+            </div>
+        </div>
+    </div>
 
     <div id="pop_op_info" class="modal" >
-            <article class="pop_op_content">
-                <button class="closebutton">X</button>
-                <h1>first Name</h1>
-                <p id="middleName">middle name</p>
-                <p id="lastName">last name</p>
-                <p id="house">house</p>
-                <p id="blood">blood</p>
-                <p id="inquisitorial"></p>
-                <button id="makeIT">Make inquisitorial</button>
-                <button id="expell">expell</button>
-                <img id="picture" src="" alt="picture" />
-            </article>
-        </div>
-
+        <article class="pop_op_content">
+            <button class="closebutton">X</button>
+            <h1>first Name</h1>
+            <p id="middleName">middle name</p>
+            <p id="lastName">last name</p>
+            <p id="house">house</p>
+            <p id="blood">blood</p>
+            <p id="inquisitorial"></p>
+            <button id="makeIT">Make inquisitorial</button>
+            <button id="expell">expell</button>
+            <img id="picture" src="" alt="picture" />
+        </article>
+    </div>
 
     <script src="script.js"></script>
 </body>

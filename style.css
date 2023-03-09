@@ -1,21 +1,51 @@
 [data-action] {
     cursor: pointer;
 }
+body{
+background-color: rgb(62, 55, 55);
+}
+/*style interface*/
+h1{
+  text-align: center;
+  margin-bottom: 5%;
+  margin-top: 5%;
+}
 
 
-#student_insert {
+.grid_container{
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+#holder{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 10px;
+  row-gap: 10px;
+  margin-block-start: 70px;
+place-content: center;
+}
+
+article#single_student{
+  background-color: rgb(138, 133, 137);
+  border: solid 1px #333;
+}
+
+article#single_student button{
   background-color: #ffe191;
-  width: 70%;
-  border-collapse: collapse;
+  text-align: center;
+  margin: 20px
+}
+
+
+.filter_sort_buttons{
+  margin-right: 40%;
+  padding-left: 10%;
+}
+.filtering button,.sorting button{
   display: block;
 }
-
-
-#student_insert td{
-  margin-top: 10px;
-
-}
-
 
 
 #search_and_hack{
@@ -23,36 +53,46 @@
 }
 
 
-#counting_text h4{
+#counting_text{
   display: inline-block;
   margin-inline-end: 20px;
+  text-align: left;
+ margin-inline: auto;
+ padding: 20px;
+ 
+ 
+
+
 }
 
-#filter_buttons {
-  border: #333 solid 1px;
+
+#filter_buttons button{
+  display: inline;
+  margin-bottom: 10px;
   margin-right: 80%;
   padding-left: 20px;
 }
 
-#filter_buttons button{
-  display: block;
-  margin-bottom: 10px;
-}
 
-
-
-td[data-field=winner]::after{
+[data-field=winner]::after{
     content:"🔔";
   }
   
-  td[data-field=winner][data-winner=false]::after{
+  [data-field=winner][data-winner=false]::after{
   filter: grayscale(1);
   }
+
+.knapper{
+  display: flex;
+}
 
   .hide{
     visibility: hidden;
   }
   
+
+
+  /*style pop_op*/
   .modal{
     position: fixed;
     top: 0;

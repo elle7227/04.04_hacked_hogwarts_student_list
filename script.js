@@ -293,15 +293,14 @@ function sortByType(a, b) {
 
 function displayList(students) {
   // clear the list
-  document.querySelector("#student_insert").innerHTML = "";
+  document.querySelector("#holder").innerHTML = "";
   // build a new list
   students.forEach(displayStudent);
-  document.querySelector("#nr_expelled").innerHTML = `Students expelled: ${expelledStudents.length + 0}`;
 }
 
 function displayStudent(student) {
   // create clone
-  const clone = document.querySelector("#student").content.cloneNode(true);
+  const clone = document.querySelector("template").cloneNode(true).content;
   // set clone data
   clone.querySelector("[data-field=first_name]").textContent = student.first_name;
   clone.querySelector("[data-field=last_name]").textContent = student.last_name;
@@ -359,8 +358,11 @@ function displayStudent(student) {
         alert("not possible");
       }
       close();
+      document.querySelector("#nr_expelled").innerHTML = `Students expelled: ${expelledStudents.length + 0}`;
     }
     function close() {
+      pop_op_info.querySelector("button#expell").removeEventListener("click", expelStudent);
+
       document.querySelector("#pop_op_info").style.display = "none";
       buildList();
     }
@@ -379,7 +381,7 @@ function displayStudent(student) {
   }
 
   // append clone to list
-  document.querySelector("#student_insert").appendChild(clone);
+  document.querySelector("#holder").appendChild(clone);
 }
 
 function tryToMakeAWinner(selectedStudent) {
