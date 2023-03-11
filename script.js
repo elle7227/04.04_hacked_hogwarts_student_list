@@ -23,7 +23,7 @@ const Student = {
   blood: "",
   image: "",
   expelled: false,
-  winner: false,
+  prefect: false,
   inquisitorial: false,
 };
 
@@ -32,6 +32,8 @@ document.querySelector("#pop_op_info").style.display = "none";
 
 async function start() {
   console.log("ready");
+  document.body.style.backgroundColor = " rgb(62, 55, 55)";
+  document.querySelector("#hacked_text").classList.add("hide");
   await loadJSON();
 
   //call function that adds event-listeners to filter and sort buttons
@@ -123,7 +125,6 @@ function prepareObject(jsonObject) {
 document.querySelector("#searchBar").addEventListener("keyup", (e) => {
   console.log(e.target.value);
   const searchtarget = e.target.value;
-  /* filterkeramik2 defineres som værende produkter (som returneres) hvori de indtastede bogstaver indår i navnet*/
   const filteredstudents = allStudents.filter((student) => {
     return student.first_name.includes(searchtarget);
   });
@@ -304,7 +305,7 @@ function displayStudent(student) {
   // set clone data
   clone.querySelector("[data-field=first_name]").textContent = student.first_name;
   clone.querySelector("[data-field=last_name]").textContent = student.last_name;
-  clone.querySelector("[data-field=house]").textContent = student.house;
+  clone.querySelector("[data-field=house]").textContent = `From: ${student.house}`;
   clone.querySelector("button").addEventListener("click", () => showPopUp(student));
 
   document.querySelector(".closebutton").addEventListener("click", () => (pop_op_info.style.display = "none"));
@@ -313,10 +314,11 @@ function displayStudent(student) {
     console.log("viser pop_op");
     const pop_op_info = document.querySelector("#pop_op_info");
     pop_op_info.style.display = "flex";
-    pop_op_info.querySelector("h1").textContent = student.first_name;
-    pop_op_info.querySelector("#lastName").textContent = student.last_name;
-    pop_op_info.querySelector("#house").textContent = student.house;
+    pop_op_info.querySelector("h1").textContent = student.first_name + ` ${student.middleName} ${student.nickName}`;
+    pop_op_info.querySelector("#lastName").textContent = `Last name: ${student.last_name}`;
+    pop_op_info.querySelector("#house").textContent = `House: ${student.house}`;
     pop_op_info.querySelector("#blood").textContent = `Blood-status: ${student.blood}`;
+    pop_op_info.querySelector("#prefect").textContent = `Prefect: ${student.prefect}`;
     pop_op_info.querySelector("#inquisitorial").textContent = "Inquisitorial: false";
 
     pop_op_info.querySelector("#picture").src = student.image;
@@ -368,14 +370,14 @@ function displayStudent(student) {
     }
   }
 
-  clone.querySelector("[data-field=winner]").dataset.winner = student.winner;
-  clone.querySelector("[data-field=winner]").addEventListener("click", clickWinner);
+  clone.querySelector("[data-field=prefect]").dataset.prefect = student.prefect;
+  clone.querySelector("[data-field=prefect]").addEventListener("click", clickPrefect);
 
-  function clickWinner() {
-    if (student.winner === true) {
-      student.winner = false;
+  function clickPrefect() {
+    if (student.prefect === true) {
+      student.prefect = false;
     } else {
-      tryToMakeAWinner(student);
+      tryToMakeAPrefect(student);
     }
     buildList();
   }
@@ -384,31 +386,31 @@ function displayStudent(student) {
   document.querySelector("#holder").appendChild(clone);
 }
 
-function tryToMakeAWinner(selectedStudent) {
-  const winners = allStudents.filter((student) => student.winner);
-  console.log(winners);
-  console.log(winners.length);
-  document.querySelector("#prefect_students").textContent = `Prefects: ${winners.length + 1}`;
+function tryToMakeAPrefect(selectedStudent) {
+  const prefects = allStudents.filter((student) => student.prefect);
+  console.log(prefects);
+  console.log(prefects.length);
 
-  //const numberOfWinners = winners.length;
-  const other = winners.filter((student) => student.house === selectedStudent.house).shift();
+  const numberOfPrefects = prefects.length;
+
+  const other = prefects.filter((student) => student.house === selectedStudent.house).shift();
 
   //if there is another of the same type
   if (other !== undefined) {
     removeOther(other);
-  } //else if(numberOfWinners >= 2){
-  //removeAorB(winners[0], winners[1]);}
-  else {
-    makeWinner(selectedStudent);
+  } /*else if (numberOfPrefects >= 2) {
+    removeAorB(prefects[0], prefects[1]);
+  }*/ else {
+    makePrefect(selectedStudent);
   }
+  document.querySelector("#prefect_students").textContent = `Prefects: ${prefects.length + 1}`;
 
   function removeOther(other) {
     //ask user to ignore og remove other
     document.querySelector("#remove_other").classList.remove("hide");
     document.querySelector("#remove_other .closebutton1").addEventListener("click", closeDialog);
     document.querySelector("#remove_other #remove_other_button").addEventListener("click", clickRemoveOther);
-
-    document.querySelector("#remove_other [data-field=otherwinner]").textContent = other.first_name;
+    document.querySelector("#remove_other [data-field=prefect]").textContent = other.first_name;
 
     //if ignore do nothing
     function closeDialog() {
@@ -419,15 +421,15 @@ function tryToMakeAWinner(selectedStudent) {
 
     //if remove other:
     function clickRemoveOther() {
-      removeWinner(other);
-      makeWinner(selectedStudent);
+      removePrefect(other);
+      makePrefect(selectedStudent);
       buildList();
       closeDialog();
     }
   }
 }
 
-function removeAorB(winnerA, winnerB) {
+function removeAorB(prefectA, prefectB) {
   //ask user to ignore og remove a or b
 
   document.querySelector("#remove_aorb").classList.remove("hide");
@@ -436,8 +438,8 @@ function removeAorB(winnerA, winnerB) {
   document.querySelector("#remove_aorb #remove_b").addEventListener("click", clickRemoveB);
 
   //show names on buttons
-  document.querySelector("#remove_aorb [data-field=winnerA]").textContent = winnerA.first_name;
-  document.querySelector("#remove_aorb [data-field=winnerB]").textContent = winnerB.first_name;
+  document.querySelector("#remove_aorb [data-field=prefectA]").textContent = prefectA.first_name;
+  document.querySelector("#remove_aorb [data-field=prefectB]").textContent = prefectB.first_name;
 
   //if ignore do nothing
   function closeDialog() {
@@ -449,32 +451,34 @@ function removeAorB(winnerA, winnerB) {
 
   //if remove a
   function clickRemoveA() {
-    removeWinner(winnerA);
-    makeWinner(selectedStudent);
+    removePrefect(prefectA);
+    makePrefect(selectedStudent);
     buildList();
     closeDialog();
   }
 
   //if remove b
   function clickRemoveB() {
-    removeWinner(winnerB);
-    makeWinner(selectedStudent);
+    removePrefect(prefectB);
+    makePrefect(selectedStudent);
     buildList();
     closeDialog();
   }
 }
 
-function removeWinner(winnerStudent) {
-  winnerStudent.winner = false;
+function removePrefect(prefectStudent) {
+  prefectStudent.prefect = false;
 }
 
-function makeWinner(student) {
-  student.winner = true;
+function makePrefect(student) {
+  student.prefect = true;
 }
 
 function starthack() {
   hacked = true;
   console.log("system is hacked");
+  document.body.style.backgroundColor = "beige";
+  document.querySelector("#hacked_text").classList.remove("hide");
   hackTheSystem();
 }
 
@@ -482,7 +486,6 @@ function hackTheSystem() {
   hacked = true;
   buildList();
   console.log("hacked with random and push ellen ");
-  document.body.style.backgroundColor = "beige";
 
   let random;
   allStudents.forEach((student) => {
@@ -505,12 +508,14 @@ function hackTheSystem() {
     nickName: "",
     house: "Gryffindor",
     blood: "pure",
-    image: "",
+    image: "images/ellen.png",
     expelled: false,
-    winner: false,
+    prefect: false,
     inquisitorial: false,
   };
 
   allStudents.push(mySelf);
   buildList();
+  document.querySelector("#hack_button").removeEventListener("click", starthack);
+  document.querySelector("h1").addEventListener("click", start);
 }

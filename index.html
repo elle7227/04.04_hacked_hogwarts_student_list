@@ -9,6 +9,7 @@
 </head>
 <body>
     <h1>HOGWART STUDENT LIST</h1>
+    <h5 id="hacked_text">THE SITE IS HACKED</h5>
 
     <div id="search_and_hack">
         <input type="text" id="searchBar" placeholder="Search...">
@@ -20,8 +21,8 @@
 
 
             <div class="filter_sort_buttons">
-                <div class="filtering"
-                    <button class="filter" data-action="filter" data-filter="*">SHOW ALL STUDENTS</button>
+                <div class="filtering">
+                    <h2 class="filter" data-action="filter" data-filter="*">SHOW ALL STUDENTS</h2>
                     <h3>Filter by house</h3>
                     <button class="filter" data-action="filter" data-filter="gryffindor">Gryffindor</button>
                     <button class="filter" data-action="filter" data-filter="hufflepuff">Hufflepuff</button>
@@ -32,7 +33,7 @@
                 </div>
                 <div class="sorting">
                     <h3>Sort on:</h3>
-                    <button data-action="sort" data-sort-direction="asc" data-sort="winner">Winners</button>
+                    <button data-action="sort" data-sort-direction="asc" data-sort="prefect">prefects</button>
                     <button data-action="sort" data-sort-direction="asc" data-sort="first_name">First name</button>
                     <button data-action="sort" data-sort-direction="asc" data-sort="last_name">Last name</button>
                     <button data-action="sort" data-sort-direction="asc" data-sort="house">House</button>
@@ -46,8 +47,8 @@
                     <p data-field="last_name">Last name</p>
                     <p data-field="house">House</p>
                     <div class="knapper">
-                        <buttom data-field="winner" data-winner="false"></buttom>
-                        <button>se mere</button>
+                        <buttom data-field="prefect" data-prefect="false"></buttom>
+                        <button>More info</button>
                     </div>
                 </article>
             </template>
@@ -60,7 +61,7 @@
                 <h4 id="nr_ravenclaw" class="house_count"></h4>
                 <h4 id="nr_slytherin" class="house_count"></h4>
                 <h3>Students</h3>
-                <h4 id="prefect_students">Prefects:</h4>
+                <h4 id="prefect_students">🔔 Prefects:</h4>
                 <h4 id="nr_expelled">Expelled students:</h4>
                
             </div>
@@ -74,7 +75,7 @@
             <h1>Warning!</h1>
             <p>there can only be one winner of each type <br>
             do you want to remove other winner?</p>
-            <button id="remove_other_button">remove<span data-field="otherwinner">Other</span></button>
+            <button id="remove_other_button">remove<span data-field="otherPrefect">Other</span></button>
         </div>
     </div>
     
@@ -82,11 +83,11 @@
         <div class="dialog1">
             <button class="closebutton1">X</button>
             <h1>Warning!</h1>
-            <p>there can not be any more than 2 winners <br>
-            do you want to remove one of the existing winners?</p>
+            <p>there can not be any more than 2 prefects <br>
+            do you want to remove one of the existing prefect?</p>
             <div class="sidebyside">
-                <button id="remove_a">remove <span data-field="winnerA">A</span></button>
-                <button id="remove_b">remove <span data-field="winnerB">B</span></button>
+                <button id="remove_a">remove <span data-field="prefectA">A</span></button>
+                <button id="remove_b">remove <span data-field="prefectB">B</span></button>
             </div>
         </div>
     </div>
@@ -95,14 +96,15 @@
         <article class="pop_op_content">
             <button class="closebutton">X</button>
             <h1>first Name</h1>
-            <p id="middleName">middle name</p>
+            <img id="picture" src="" alt="picture"/>
             <p id="lastName">last name</p>
+            <p id="prefect">prefect</p>
             <p id="house">house</p>
             <p id="blood">blood</p>
             <p id="inquisitorial"></p>
             <button id="makeIT">Make inquisitorial</button>
             <button id="expell">expell</button>
-            <img id="picture" src="" alt="picture" />
+           
         </article>
     </div>
 
