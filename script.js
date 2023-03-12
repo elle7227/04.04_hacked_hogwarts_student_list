@@ -279,7 +279,7 @@ function sortByType(a, b) {
 }
 
 function displayList(students) {
-  document.querySelector("#array_lenght").textContent = `Displaying: ${allStudents.length - expelledStudents.length} students`;
+  document.querySelector("#array_lenght").textContent = `Students total: ${allStudents.length - expelledStudents.length}`;
   // clear the list
   document.querySelector("#holder").innerHTML = "";
   // build a new list
