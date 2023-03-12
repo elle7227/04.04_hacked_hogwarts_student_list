@@ -1,6 +1,85 @@
 [data-action] {
     cursor: pointer;
 }
+
+
+#holder{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 25px;
+  margin-block-start: 30px;
+  place-content: center;
+}
+
+article#single_student{
+background-color: rgba(246, 245, 245, 0.208);
+  border: solid 1px rgb(255, 255, 255);
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  margin: auto;
+}
+[data-field=prefect]::after{
+  content:"🔔";
+}
+
+[data-field=prefect][data-prefect=false]::after{
+filter: grayscale(1);
+}
+
+.modal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(165, 180, 180, 0.632);
+}
+
+.pop_op_content{
+  display: grid;
+  box-shadow: 1px 1px 1px #333;
+  border-radius: 12px;
+  padding: 2em;
+  background-color: #ddd6db;
+  position: relative;
+  align-content: center;
+  width: 30%;
+  height: 60%;
+}
+
+#pop_op_info p{
+margin-bottom: -10px;
+}
+
+
+button#makeIT{
+margin-top: 20px;
+}
+
+div.dialog1{
+  padding: 30px;
+  border: solid 1px black;
+  background-color:  #f5eec0;
+}
+
+button.closebutton{
+  position: absolute;
+  right: -1em;
+  top: -1em;
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+}
+
+.hide{
+  visibility: hidden;
+}
+
+@media (min-width: 800px){
 body{
 background-color: rgb(62, 55, 55);
 }
@@ -11,6 +90,14 @@ h1{
   margin-top: 5%;
   font-size: 3rem;
   color: white;
+  cursor: pointer;
+}
+h2{
+  color: white;}
+h3{
+  color:white;
+  text-decoration: underline;
+
 }
 
 #search_and_hack{
@@ -25,19 +112,20 @@ h1{
 
 #holder{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   column-gap: 10px;
   row-gap: 10px;
   margin-block-start: 70px;
 place-content: center;
-margin-inline: -120px;
+margin-inline: -140px;
 }
 
 article#single_student{
 background-color: rgba(246, 245, 245, 0.208);
   border: solid 1px rgb(255, 255, 255);
   border-radius: 20px;
-  padding: 6px;
+  padding: 30px;
+  margin: auto;
 }
 
 article#single_student p{
@@ -49,16 +137,19 @@ article#single_student button{
   all: unset;
   background-color:  #f5eec0;
   text-align: center;
-  margin-top:-25px;
+  margin-top: 3px;
+  margin-bottom: -30px;
   margin-inline: 25px;
   padding: 2px;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 
 .filter_sort_buttons{
   margin-right: 40%;
   padding-left: 10%;
+  cursor: pointer;
 }
 
 .filter_sort_buttons button{
@@ -90,10 +181,10 @@ font-size: 1.2rem;
 }
 
 #counting_text{
-  display: inline-block;
   text-align: left;
- margin-inline: auto;
+  padding-left: 50%;
  color: white;
+ z-index: -100;
 }
 
 #filter_buttons button{
@@ -116,7 +207,6 @@ font-size: 1.2rem;
   display: flex;
   flex-direction:column;
   margin-bottom: 15px;
-  padding: auto;
 }
 
   .hide{
@@ -159,7 +249,7 @@ font-size: 1.2rem;
   }
  
   #pop_op_info h1{
-    margin-top: 100px;
+    margin-top: 120px;
   }
   
   button.closebutton{
@@ -183,6 +273,7 @@ font-size: 1.2rem;
     position: relative;
     left: 240px;
     top: -130px;
+    margin-bottom: 10px;
   }
 
   button#makeIT{
@@ -200,10 +291,15 @@ font-size: 1.2rem;
     border: solid 1px black;
     background-color:  #f5eec0;
   }
+
 #hacked_text{
   font-size: 6rem;
  position: fixed;
  top: 60px;
  left: 200px;
+}
+
+
+
 }
   
