@@ -466,7 +466,7 @@ function makePrefect(selectedStudent) {
 function starthack() {
   hacked = true;
   console.log("system is hacked");
-  document.body.style.backgroundColor = "beige";
+  document.body.style.backgroundColor = "purple";
   document.querySelector("#hacked_text").classList.remove("hide");
   hackTheSystem();
 }
