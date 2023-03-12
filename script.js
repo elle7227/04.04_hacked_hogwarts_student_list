@@ -165,13 +165,8 @@ function filterlist(filteredList) {
   } else if (settings.filterBy === "slytherin") {
     filteredList = allStudents.filter(isSlytherin);
   } else if (settings.filterBy === "expelled") {
-    filteredList = allStudents.filter(isExpelled);
+    filteredList = expelledStudents;
   }
-
-  //showing nymber of students in each house/category on interface
-
-  //number of displayed students
-  document.querySelector("#array_lenght").textContent = `Displaying: ${allStudents.length} students`;
 
   //number of hufflepuff students
   const huffleStudent = allStudents.filter((student) => student.house == "Hufflepuff");
@@ -218,15 +213,6 @@ function isRavenclaw(student) {
 
 function isSlytherin(student) {
   if (student.house == "Slytherin") {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-function isExpelled(student) {
-  console.log("expelled st");
-  if (student.expelled == false) {
     return true;
   } else {
     return false;
@@ -293,6 +279,7 @@ function sortByType(a, b) {
 }
 
 function displayList(students) {
+  document.querySelector("#array_lenght").textContent = `Displaying: ${allStudents.length - expelledStudents.length} students`;
   // clear the list
   document.querySelector("#holder").innerHTML = "";
   // build a new list
@@ -362,9 +349,9 @@ function displayStudent(student) {
       close();
       document.querySelector("#nr_expelled").innerHTML = `Students expelled: ${expelledStudents.length + 0}`;
     }
+
     function close() {
       pop_op_info.querySelector("button#expell").removeEventListener("click", expelStudent);
-
       document.querySelector("#pop_op_info").style.display = "none";
       buildList();
     }
@@ -385,27 +372,29 @@ function displayStudent(student) {
   // append clone to list
   document.querySelector("#holder").appendChild(clone);
 }
+const prefects = allStudents.filter((student) => student.prefect);
 
 function tryToMakeAPrefect(selectedStudent) {
   const prefects = allStudents.filter((student) => student.prefect);
+  //const andre = prefects.filter((student) => student.house);
   console.log(prefects);
   console.log(prefects.length);
 
-  const numberOfPrefects = prefects.length;
+  //const numberOfPrefects = prefects.length;
 
-  const other = prefects.filter((student) => student.house === selectedStudent.house).shift();
+  const other = prefects.filter((student) => student.house === selectedStudent.house);
 
-  //if there is another of the same type
-  if (other !== undefined) {
-    removeOther(other);
-  } /*else if (numberOfPrefects >= 2) {
-    removeAorB(prefects[0], prefects[1]);
-  }*/ else {
-    makePrefect(selectedStudent);
-  }
+  const numberOfandre = other.length;
   document.querySelector("#prefect_students").textContent = `Prefects: ${prefects.length + 1}`;
 
-  function removeOther(other) {
+  //if there is another of the same type
+  if (numberOfandre >= 2) {
+    removeAorB(prefects[0], prefects[1]);
+  } else {
+    makePrefect(selectedStudent);
+  }
+
+  /*function removeOther(other) {
     //ask user to ignore og remove other
     document.querySelector("#remove_other").classList.remove("hide");
     document.querySelector("#remove_other .closebutton1").addEventListener("click", closeDialog);
@@ -426,7 +415,7 @@ function tryToMakeAPrefect(selectedStudent) {
       buildList();
       closeDialog();
     }
-  }
+  }*/
 }
 
 function removeAorB(prefectA, prefectB) {
@@ -450,7 +439,7 @@ function removeAorB(prefectA, prefectB) {
   }
 
   //if remove a
-  function clickRemoveA() {
+  function clickRemoveA(selectedStudent) {
     removePrefect(prefectA);
     makePrefect(selectedStudent);
     buildList();
@@ -458,7 +447,7 @@ function removeAorB(prefectA, prefectB) {
   }
 
   //if remove b
-  function clickRemoveB() {
+  function clickRemoveB(selectedStudent) {
     removePrefect(prefectB);
     makePrefect(selectedStudent);
     buildList();
@@ -470,8 +459,8 @@ function removePrefect(prefectStudent) {
   prefectStudent.prefect = false;
 }
 
-function makePrefect(student) {
-  student.prefect = true;
+function makePrefect(selectedStudent) {
+  selectedStudent.prefect = true;
 }
 
 function starthack() {
